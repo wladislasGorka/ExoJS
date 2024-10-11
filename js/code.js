@@ -26,27 +26,55 @@ f();
 //--------------------------------------
 const lettre = "ABCDEFGHJKLMNPQRSTUVWXYZ";
 const nombre = "0123456789";
-// console.log(lettre[2]);
 const plaques = [];
 
 function generatePlaque(n){
     let plaque = "";
     for(let j = 0; j<n; j++){
+        //réinitialise la variable plaque
         plaque = "";
-        for(let i = 0; i<2; i++){
-            plaque += lettre.charAt(Math.floor(Math.random()*lettre.length));
-        }
+
+        //génération de la plaque
+        plaque += generateLetter(2);
         plaque += "-"
-        for(let i = 0; i<3; i++){
-            plaque += nombre.charAt(Math.floor(Math.random()*nombre.length));
-        }
+        plaque += generateNumber(3);
         plaque += "-"
-        for(let i = 0; i<2; i++){
-            plaque += lettre.charAt(Math.floor(Math.random()*lettre.length));
+        plaque += generateLetter(2);
+
+        //si la plaque est unique on l'ajoute à la liste sinon on en génère une nouvelle
+        if(isUnique(plaque)){
+            plaques.push(plaque);
+        }else{
+            console.log(plaque + " already exist!")
+            j--;
         }
-        plaques.push(plaque);
     }
+}
+
+function generateLetter(n){
+    let letters = "";
+    for(let i = 0; i<n; i++){
+        letters += lettre.charAt(Math.floor(Math.random()*lettre.length));
+    }
+    return letters;
+}
+function generateNumber(n){
+    let numbers = "";
+    for(let i = 0; i<n; i++){
+        numbers += nombre.charAt(Math.floor(Math.random()*nombre.length));
+    }
+    return numbers;
+}
+
+function isUnique(numPlaque){
+    for(let i=0; i<plaques.length; i++){
+        if(numPlaque===plaques[i]){
+            return false;
+        }
+    }
+    return true;
 }
 
 generatePlaque(10);
 console.log(plaques);
+// console.log(isUnique("AS-123-AS"));
