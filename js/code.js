@@ -23,18 +23,26 @@ f();
 const lettre = "ABCDEFGHJKLMNPQRSTUVWXYZ";
 const nombre = "0123456789";
 // console.log(lettre[2]);
-let plaque = "";
+const plaques = [];
 
-for(let i = 0; i<2; i++){
-    plaque += lettre.charAt(Math.floor(Math.random()*lettre.length));
-}
-plaque += "-"
-for(let i = 0; i<3; i++){
-    plaque += nombre.charAt(Math.floor(Math.random()*nombre.length));
-}
-plaque += "-"
-for(let i = 0; i<2; i++){
-    plaque += lettre.charAt(Math.floor(Math.random()*lettre.length));
+function generatePlaque(n){
+    let plaque = "";
+    for(let j = 0; j<n; j++){
+        plaque = "";
+        for(let i = 0; i<2; i++){
+            plaque += lettre.charAt(Math.floor(Math.random()*lettre.length));
+        }
+        plaque += "-"
+        for(let i = 0; i<3; i++){
+            plaque += nombre.charAt(Math.floor(Math.random()*nombre.length));
+        }
+        plaque += "-"
+        for(let i = 0; i<2; i++){
+            plaque += lettre.charAt(Math.floor(Math.random()*lettre.length));
+        }
+        plaques.push(plaque);
+    }
 }
 
-console.log(plaque);
+generatePlaque(10);
+console.log(plaques);
