@@ -18,3 +18,23 @@ function f (){
 }
 console.log("x= " + x);
 f();
+
+//generateur de plaque d'immatriculation
+const lettre = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+const nombre = "0123456789";
+// console.log(lettre[2]);
+let plaque = "";
+
+for(let i = 0; i<2; i++){
+    plaque += lettre.charAt(Math.floor(Math.random()*lettre.length));
+}
+plaque += "-"
+for(let i = 0; i<3; i++){
+    plaque += nombre.charAt(Math.floor(Math.random()*nombre.length));
+}
+plaque += "-"
+for(let i = 0; i<2; i++){
+    plaque += lettre.charAt(Math.floor(Math.random()*lettre.length));
+}
+
+console.log(plaque);
