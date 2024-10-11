@@ -1,15 +1,15 @@
 let monCanard = "donald";
-
-const nombreDePate = 2;
-const nombreDAile = 2;
+let canard2;
 
 function canard(nbPate, nbAile){
     let maCanette = "daisy";
     let mesCanards = `${maCanette} et ${monCanard}`;
 
     // console.log(mesCanards);
-    return `${mesCanards} ont ${nbPate} pates et ${nbAile} ailes!`;
+    // return `${mesCanards} ont ${nbPate} pates et ${nbAile} ailes!`;
+    return nbPate += nbAile;
 }
 
-console.log(canard(nombreDePate,nombreDAile));
+console.log(canard(2,1));
+console.log(canard2);
 
