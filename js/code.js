@@ -19,7 +19,11 @@ function f (){
 console.log("x= " + x);
 f();
 
+//--------------------------------------
+//
 //generateur de plaque d'immatriculation
+//
+//--------------------------------------
 const lettre = "ABCDEFGHJKLMNPQRSTUVWXYZ";
 const nombre = "0123456789";
 // console.log(lettre[2]);
