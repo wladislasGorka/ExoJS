@@ -1,7 +1,6 @@
 let monCanard = "donald";
-let canard2;
 
-function canard(nbPate, nbAile){
+function canard(nbPate = 2, nbAile = 2){
     let maCanette = "daisy";
     let mesCanards = `${maCanette} et ${monCanard}`;
 
@@ -11,5 +10,11 @@ function canard(nbPate, nbAile){
 }
 
 console.log(canard(2,1));
-console.log(canard2);
 
+let x = 1;
+function f (){
+    let x = 2;
+    console.log("x= " + x);
+}
+console.log("x= " + x);
+f();
