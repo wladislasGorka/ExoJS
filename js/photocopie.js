@@ -14,11 +14,12 @@ function calculPrix(n){
             prix += 0.08;
         }
     }
+    prix=prix.toFixed(2);
 
     console.log(`Prix de ${n} photocopie: ${prix}€`)
     return prix;
 }
 
-calculPrix(7);
-calculPrix(8);
-calculPrix(9);
+calculPrix(5);
+calculPrix(20);
+calculPrix(40);
