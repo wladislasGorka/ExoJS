@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police</title>
+</head>
+<body>
+    <h1>Police d'Assurance</h1>
+
+    <form action="" method="post" id="formCalculTarif" name="formCalculTarif">
+        <fieldset>
+            <legend>Calculez votre tarif assurance</legend>
+            <ul>
+                <li><label for="formPrenom">Prénom</label><input id="formPrenom" type="text"></li>
+                <li><label for="formNom">Nom</label><input id="formNom" type="text"></li>
+                <li><label for="formAge">Age</label><input id="formAge" type="number"></li>
+                <li><label for="formDatePermis">Date d'obtention du permis</label><input id="formDatePermis" type="number"></li>
+                <li><label for="formNbAccident">Nombre d'accident</label><input id="formNbAccident" type="number"></li>
+                <li><label for="formDateAssurance">Assuré depuis</label><input id="formDateAssurance" type="number"></li>
+                <!-- <li id="today"><input id="formDateToday" type="date"></li> -->
+                <li><input type="submit" value="Calculer"></li>
+            </ul>
+            
+        </fieldset>
+    </form>
+
+    <table id="tableauConducteur">
+        <tr>
+            <td><strong>Prénom</strong></td>
+            <td><strong>Nom</strong></td>
+            <td><strong>Age</strong></td>
+            <td><strong>Date permis</strong></td>
+            <td><strong>Nb d'accident</strong></td>
+            <td><strong>Date Assurance</strong></td>
+            <td><strong>Tarif</strong></td>
+        </tr>
+    </table>
+
+    <script src="../js/assurance.js"></script>
+</body>
+</html>
