@@ -8,8 +8,10 @@
 //     tarif: '',
 // };
 
+//Les tarifs en vigueur
 const tarifs = ['A','B','C','D','Refusé']
 
+//objet conducteur
 function Conducteur(prenom,nom,age,datePermis,nbAccident,dateAssurance){
     this.prenom = prenom;
     this.nom = nom;
@@ -17,15 +19,16 @@ function Conducteur(prenom,nom,age,datePermis,nbAccident,dateAssurance){
     this.datePermis = datePermis;
     this.nbAccident = nbAccident;
     this.dateAssurance = dateAssurance;
+    this.tarif = 'Refusé';
 }
 
+//calcul le tarif selon le conducteur en paramètre
 function calculTarif(conducteur) {
     let tarifFamille = 0;
-    let tarif = 0;
 
     if(!isMajeur(conducteur.age) && isJeuneConducteur(conducteur.datePermis)){
         switch(conducteur.nbAccident){
-            case 0:
+            case "0":
                 tarifFamille = 3;
                 break;
             default:
@@ -35,10 +38,10 @@ function calculTarif(conducteur) {
     }
     else if((!isMajeur(conducteur.age) && !isJeuneConducteur(conducteur.datePermis)) || (isMajeur(conducteur.age) && isJeuneConducteur(conducteur.datePermis))){
         switch(conducteur.nbAccident){
-            case 0:
+            case "0":
                 tarifFamille = 2;
                 break;
-            case 1:
+            case "1":
                 tarifFamille = 3;
                 break;
             default:
@@ -48,13 +51,13 @@ function calculTarif(conducteur) {
     }
     else{
         switch(conducteur.nbAccident){
-            case 0:
+            case "0":
                 tarifFamille = 1;
                 break;
-            case 1:
+            case "1":
                 tarifFamille = 2;
                 break;
-            case 2:
+            case "2":
                 tarifFamille = 3;
                 break;
             default:
@@ -62,17 +65,18 @@ function calculTarif(conducteur) {
                 break;
         }
     }
-
-    if(isfidele){
-        tarif = tarifs[tarifFamille-1];
+    
+    //Si le client est assuré depuis plus d'un ans
+    if(isFidele(conducteur.dateAssurance)){
+        conducteur.tarif = tarifs[tarifFamille-1];
     }else{
-        tarif = tarifs[tarifFamille];
+        conducteur.tarif = tarifs[tarifFamille];
     }
 
-    conducteur.tarif = tarif;
-    return tarif;
+    return conducteur.tarif;
 }
 
+//Bool
 function isMajeur(age){
     if(age<25){
         return false;
@@ -82,6 +86,7 @@ function isMajeur(age){
     }
 }
 
+//Bool
 function isJeuneConducteur(datePermis){
     if(datePermis<2){
         return true;
@@ -91,8 +96,9 @@ function isJeuneConducteur(datePermis){
     }
 }
 
-function isfidele(dateAssurance){
-    if(dateAssurance<1){
+//Bool
+function isFidele(dateAssurance){
+    if(dateAssurance<2){
         return false;
     }
     else{
@@ -100,6 +106,7 @@ function isfidele(dateAssurance){
     }
 }
 
+//Ajoute le conducteur a un tableau dans le html
 function ajoutConducteur(conducteur){
     let table = document.getElementById("tableauConducteur");
     let newRow = document.createElement("tr");
@@ -131,19 +138,9 @@ function ajoutConducteur(conducteur){
 
 }
 
-const conducteur1 = new Conducteur("Jean","Dupont",23,0,1,0);
-const conducteur2 = new Conducteur("Jeanne","Dupont",26,5,0,0);
-
-//console.log(conducteur1.prenom);
-calculTarif(conducteur1);
-//console.log(conducteur1.tarif);
-
-//console.log(conducteur2.prenom);
-calculTarif(conducteur2);
-//console.log(conducteur2.tarif);
-
-ajoutConducteur(conducteur1);
-ajoutConducteur(conducteur2);
+//const conducteur1 = new Conducteur("Jean","Dupont",23,0,1,0);
+//calculTarif(conducteur1);
+//ajoutConducteur(conducteur1);
 
 
 //gestion du formulaire
@@ -153,8 +150,9 @@ form.addEventListener('submit', function (event) {
     // Prevent the default form submission behavior
     event.preventDefault();
     // Do your form processing here (e.g., send data to a server)
-    console.log('Form submitted without page refresh');
+    //console.log('Form submitted without page refresh');
 
+    //Les valeurs du formulaire sont utilisées pour créer un nouveau conducteur
     const newConducteur = new Conducteur(
         form.elements['formPrenom'].value,
         form.elements['formNom'].value,
@@ -162,11 +160,35 @@ form.addEventListener('submit', function (event) {
         form.elements['formDatePermis'].value,
         form.elements['formNbAccident'].value,
         form.elements['formDateAssurance'].value);
-        
+
+    
     console.log(newConducteur);
+    //Calcul du tarif pour ce nouveau conducteur
+    calculTarif(newConducteur);
+    //Le conducteur est ajouté au tableau HTML
+    ajoutConducteur(newConducteur);
 
     // Optionally, you can reset the form
     // form.reset();
 });
 
+// let today = document.getElementById('formDateToday');
+// today.valueAsDate = new Date();
+// document.getElementById('today').style.display = "none";
 
+// a and b are javascript Date objects
+// function dateDiffInDays(a, b) {
+//     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+//     // Discard the time and time-zone information.
+//     const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+//     const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+  
+//     return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+// }
+
+// const a = new Date("2017-01-01"),
+//     b = new Date("2017-07-25"),
+//     difference = dateDiffInDays(a, b);
+    
+//console.log(difference + ' days');
+//console.log(Date.now());
