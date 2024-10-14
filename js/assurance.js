@@ -134,15 +134,39 @@ function ajoutConducteur(conducteur){
 const conducteur1 = new Conducteur("Jean","Dupont",23,0,1,0);
 const conducteur2 = new Conducteur("Jeanne","Dupont",26,5,0,0);
 
-console.log(conducteur1.prenom);
+//console.log(conducteur1.prenom);
 calculTarif(conducteur1);
-console.log(conducteur1.tarif);
+//console.log(conducteur1.tarif);
 
-console.log(conducteur2.prenom);
+//console.log(conducteur2.prenom);
 calculTarif(conducteur2);
-console.log(conducteur2.tarif);
+//console.log(conducteur2.tarif);
 
 ajoutConducteur(conducteur1);
 ajoutConducteur(conducteur2);
+
+
+//gestion du formulaire
+const form = document.getElementById('formCalculTarif');
+// Add a submit event listener
+form.addEventListener('submit', function (event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+    // Do your form processing here (e.g., send data to a server)
+    console.log('Form submitted without page refresh');
+
+    const newConducteur = new Conducteur(
+        form.elements['formPrenom'].value,
+        form.elements['formNom'].value,
+        form.elements['formAge'].value,
+        form.elements['formDatePermis'].value,
+        form.elements['formNbAccident'].value,
+        form.elements['formDateAssurance'].value);
+        
+    console.log(newConducteur);
+
+    // Optionally, you can reset the form
+    // form.reset();
+});
 
 
