@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet" href="css/style.css">
     <title>Canard</title>
 </head>
 <body>
-    
+    <Section>
+        <h1>Generation de plaques</h1>
+
+        <label for="nbPlaques"></label>
+        <input id="nbPlaques" type="number" value="10">
+        <input type="button" value="Envoyer" onclick="startGenerate()">
+
+        <ul id="list">
+        </ul>
+    </Section>
     <script src="js/code.js"></script>
 </body>
 </html>

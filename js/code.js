@@ -28,27 +28,33 @@ const lettre = "ABCDEFGHJKLMNPQRSTUVWXYZ";
 const nombre = "0123456789";
 const plaques = [];
 
-function generatePlaque(n){
+function generatePlaque(x=2,n=2,m=3){
     let plaque = "";
-    for(let j = 0; j<n; j++){
+    for(let j = 0; j<x; j++){
         //réinitialise la variable plaque
         plaque = "";
 
         //génération de la plaque
-        plaque += generateLetter(2);
+        plaque += generateLetter(n);
         plaque += "-"
-        plaque += generateNumber(3);
+        plaque += generateNumber(m);
         plaque += "-"
-        plaque += generateLetter(2);
+        plaque += generateLetter(n);
 
         //si la plaque est unique on l'ajoute à la liste sinon on en génère une nouvelle
         if(isUnique(plaque)){
             plaques.push(plaque);
+            let item = document.createElement("li");
+            let list = document.getElementById("list");
+            item.innerHTML = plaque;
+            list.appendChild(item);
+
         }else{
             console.log(plaque + " already exist!")
             j--;
         }
     }
+    return plaques;
 }
 
 function generateLetter(n){
@@ -67,14 +73,40 @@ function generateNumber(n){
 }
 
 function isUnique(numPlaque){
-    for(let i=0; i<plaques.length; i++){
-        if(numPlaque===plaques[i]){
+    // for(let i=0; i<plaques.length; i++){
+    //     if(numPlaque===plaques[i]){
+    //         //console.log(numPlaque + " already exist!");
+    //         return false;
+            
+    //     }
+    // }
+    for(let item in plaques){
+        //console.log(plaques[item]);
+        if(numPlaque===plaques[item]){
+            console.log(numPlaque + " already exist!");
             return false;
+            
         }
     }
+
     return true;
 }
 
-generatePlaque(10);
-console.log(plaques);
-// console.log(isUnique("AS-123-AS"));
+// let nbP = window.prompt();
+// let nbL = window.prompt();
+// let nbN = window.prompt();
+//console.log(generatePlaque(20));
+//console.log(isUnique("AZ-123-AZ"));
+
+function startGenerate(){
+    //liste de plaques remise à 0
+    plaques.length = 0;
+    //liste html remise à 0 (suppression des éléments li)
+    let list = document.getElementById("list");
+    while (list.hasChildNodes()) {
+        list.removeChild(list.firstChild);
+    }
+    //generation des plaques selon la valeur donner par l'utilisateur
+    let nbPlaque = document.getElementById("nbPlaques").value;
+    generatePlaque(nbPlaque);
+}
