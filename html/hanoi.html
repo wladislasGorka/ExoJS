@@ -16,12 +16,12 @@
     </form>
 
     <ul>
-        <li><button type="button">T1 vers T3</button></li>
-        <li><button type="button">T1 vers T2</button></li>
-        <li><button type="button">T2 vers T1</button></li>
-        <li><button type="button">T2 vers T3</button></li>
-        <li><button type="button">T3 vers T2</button></li>
-        <li><button type="button">T3 vers T1</button></li>
+        <li><button type="button" onclick="move(tourInitiale,tourFinale)">T1 vers T3</button></li>
+        <li><button type="button" onclick="move(tourInitiale,tourIntermediaire)">T1 vers T2</button></li>
+        <li><button type="button" onclick="move(tourIntermediaire,tourInitiale)">T2 vers T1</button></li>
+        <li><button type="button" onclick="move(tourIntermediaire,tourFinale)">T2 vers T3</button></li>
+        <li><button type="button" onclick="move(tourFinale,tourIntermediaire)">T3 vers T2</button></li>
+        <li><button type="button" onclick="move(tourFinale,tourInitiale)">T3 vers T1</button></li>
     </ul>
     <script src="../js/hanoi.js"></script>
 </body>
