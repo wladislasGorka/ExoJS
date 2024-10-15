@@ -1,4 +1,4 @@
-const list = [6,5,4,3,2,1,0];
+const list = [11,5,21,3,2,144,0];
 
 function triBulle(list){
     for(let j=0; j<(list.length-1); j++){

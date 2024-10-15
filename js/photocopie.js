@@ -42,7 +42,7 @@ calculPrix(31);
 
 //////////////////////////////////////////////////////////////////////////////
 function calcPrixKm(km,nbPassager){
-    let prixTotal = (km*0.6).toFixed(2);
+    let prixTotal = ((km * 0.6) - (nbPassager * 0.5)).toFixed(2);
     let prixPassager = (prixTotal/nbPassager).toFixed(2);
     return console.log(`Prix total: ${prixTotal}€; Prix par passager: ${prixPassager}€`);
 }
