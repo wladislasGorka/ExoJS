@@ -64,32 +64,48 @@ function printEtoilesReverse(n){
 printEtoilesReverse(10);
 
 
-function printMosaique(nbColonne,nbLigne){
-    let lignesCount = 0;
-    let ligne = '';
+// function printMosaique(nbColonne,nbLigne){
+//     let lignesCount = 0;
+//     let ligne = '';
 
-    while(lignesCount<nbLigne){
-        ligne = '';
-        if(lignesCount % 2){
-            for(let i=0; i<nbColonne; i++){
-                if(i % 2){
-                    ligne += '#';
-                }else{
-                    ligne += '*';
-                }
+//     while(lignesCount<nbLigne){
+//         ligne = '';
+//         if(lignesCount % 2){
+//             for(let i=0; i<nbColonne; i++){
+//                 if(i % 2){
+//                     ligne += '#';
+//                 }else{
+//                     ligne += '*';
+//                 }
+//             }
+//             console.log(ligne);            
+//         }else{
+//             for(let i=0; i<nbColonne; i++){
+//                 if(i % 2){
+//                     ligne += '*';
+//                 }else{
+//                     ligne += '#';
+//                 }
+//             }
+//             console.log(ligne);            
+//         }
+//         lignesCount++;
+//     }    
+// }
+
+function printMosaique(n,m){
+    for(let i=0; i<n; i++){
+        let ligne = '';
+        for(let j=0; j<m; j++){
+            if((i+j)%2){
+                ligne += '*';
             }
-            console.log(ligne);            
-        }else{
-            for(let i=0; i<nbColonne; i++){
-                if(i % 2){
-                    ligne += '*';
-                }else{
-                    ligne += '#';
-                }
+            else{
+                ligne += '#';
             }
-            console.log(ligne);            
         }
-        lignesCount++;
-    }    
+        console.log(ligne);
+    }
 }
-printMosaique(20,20);
+
+printMosaique(6,10);
