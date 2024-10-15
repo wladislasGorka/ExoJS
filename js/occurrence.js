@@ -10,5 +10,8 @@ function compteOcc(mot,lettre){
     return occ;
 }
 
+let mot = "AZSXZEDX";
+let lettre = 'X';
+let occ = compteOcc(mot,lettre);
 
-console.log(compteOcc("AZSXZEDX",'Z'));
+console.log(`Dans ${mot}, ${lettre} est présent au rang(s): ${occ}`);

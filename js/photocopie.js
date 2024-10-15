@@ -38,3 +38,13 @@ function calculPrix(n){
 calculPrix(5);
 calculPrix(20);
 calculPrix(31);
+
+
+//////////////////////////////////////////////////////////////////////////////
+function calcPrixKm(km,nbPassager){
+    let prixTotal = (km*0.6).toFixed(2);
+    let prixPassager = (prixTotal/nbPassager).toFixed(2);
+    return console.log(`Prix total: ${prixTotal}€; Prix par passager: ${prixPassager}€`);
+}
+
+calcPrixKm(70,4);
