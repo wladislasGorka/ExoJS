@@ -1,4 +1,4 @@
-const list = [11,5,21,3,2,144,0];
+const list = [1,11,5,21,3,2,144,10];
 
 /////////////////////////////////////////////////////////////////////
 function triBulle(list){
@@ -37,15 +37,21 @@ function triSelection(list){
 
 /////////////////////////////////////////////////////////////////////
 function triRapide(list){
+    let listTemp = [];
+
     if(list.length===0){
-        return;
-    }else if(list.length===1){
-        console.log(pivot);
-        return;
+        return listTemp;
     }
+
     let pivot = list[list.length-1];
+    if(list.length===1){
+        listTemp.push(pivot);
+        return listTemp;
+    }
+    
     let gauche = [];
     let droite = [];
+
     for( let i=0; i<list.length-1; i++){
         if(list[i]<=pivot){
             gauche.push(list[i]);
@@ -53,9 +59,12 @@ function triRapide(list){
             droite.push(list[i]);
         }
     }
-    triRapide(gauche);
-    console.log(pivot);
-    triRapide(droite);
+    
+    listTemp.push(pivot);
+    list = triRapide(gauche).concat(listTemp,triRapide(droite));
+    
+    //console.log(list);
+    return list;
 }
 
 console.log(list);
