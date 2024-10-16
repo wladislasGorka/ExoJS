@@ -36,10 +36,29 @@ function triSelection(list){
 }
 
 /////////////////////////////////////////////////////////////////////
-// function triRapide(list){
-
-// }
+function triRapide(list){
+    if(list.length===0){
+        return;
+    }else if(list.length===1){
+        console.log(pivot);
+        return;
+    }
+    let pivot = list[list.length-1];
+    let gauche = [];
+    let droite = [];
+    for( let i=0; i<list.length-1; i++){
+        if(list[i]<=pivot){
+            gauche.push(list[i]);
+        }else{
+            droite.push(list[i]);
+        }
+    }
+    triRapide(gauche);
+    console.log(pivot);
+    triRapide(droite);
+}
 
 console.log(list);
 //console.log(triBulle(list));
-console.log(triSelection(list));
+//console.log(triSelection(list));
+console.log(triRapide(list));
