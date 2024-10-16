@@ -24,12 +24,12 @@ function noteSup(note){
             triEtudiants.push(etudiants[i]);
         }
     }
-
     
     for(let i=0; i<triEtudiants.length-1; i++){
-        for(let j=0; j<triEtudiants.length-1; j++){
+        for(let j=0; j<triEtudiants.length-1; j++){            
+            //console.log(triEtudiants[j].nom + " " + triEtudiants[j+1].nom);
             //console.log(triEtudiants[j].nom.localeCompare(triEtudiants[j+1].nom));
-            if(triEtudiants[j].nom>triEtudiants[j+1].nom){
+            if((triEtudiants[j].nom.localeCompare(triEtudiants[j+1].nom))===1){
                 let temp = triEtudiants[j];
                 triEtudiants[j] = triEtudiants[j+1];
                 triEtudiants[j+1] = temp;
@@ -38,10 +38,9 @@ function noteSup(note){
     }
 }
 
-
 noteSup(15);
 console.log(triEtudiants);
 
 
-console.log('Yohann'.localeCompare('Angélique'));
+//console.log('Yohann'.localeCompare('Angélique'));
 
