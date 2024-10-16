@@ -98,10 +98,12 @@ function printMosaique(n,m){
         let ligne = '';
         for(let j=0; j<m; j++){
             if((i+j)%2){
-                ligne += '#';
+                //Modulo = 1
+                ligne += '*';
             }
             else{
-                ligne += '*';
+                //Modulo = 0
+                ligne += '#';
             }
         }
         console.log(ligne);
