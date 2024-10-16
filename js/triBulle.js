@@ -1,5 +1,3 @@
-const list = [1,11,5,21,3,2,144,10];
-
 function echanger(list,a,b){
     let temp = list[a];
     list[a] = list[b];
@@ -97,9 +95,39 @@ function triRapide(list,low=0,hight=list.length-1){
     triRapide(list,i+1,hight);
 }
 
-console.log(list);
-//console.log(triBulle(list));
-//console.log(triSelection(list));
-//console.log(triRapide(list));
-triRapide(list);
-console.log(list);
+function triInsertion(list){
+    let temp = 0;
+    for(let i=1; i<list.length; i++){
+        let k = i;
+        temp = list[i];
+        let j = i-1;
+        while(j>0 && list[j]>temp){
+                list[k] = list[j];
+                k--;
+                j--;
+        }
+        list[k]=temp;
+    }
+    return list;
+}
+
+const list1 = [1,11,5,21,3,2,144,10];
+console.log("tri à Bulles:");
+console.log(list1);
+console.log(triBulle(list1));
+
+const list2 = [1,11,5,21,3,2,144,10];
+console.log("tri par Sélection:");
+console.log(list2);
+console.log(triSelection(list2));
+
+const list3 = [1,11,5,21,3,2,144,10];
+console.log("tri Rapide:");
+console.log(list3);
+triRapide(list3);
+console.log(list3);
+
+const list4 = [1,11,5,21,3,2,144,10];
+console.log("tri par Insertion:");
+console.log(list4);
+console.log(triInsertion(list4));
