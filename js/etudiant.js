@@ -38,8 +38,17 @@ function noteSup(note){
     }
 }
 
+function moyenne(listEtudiants){
+    let somme = 0;
+    for( let i=0; i<listEtudiants.length; i++){
+        somme += listEtudiants[i].note;
+    }
+    return (somme / listEtudiants.length).toFixed(2);
+}
+
 noteSup(15);
 console.log(triEtudiants);
+console.log(moyenne(triEtudiants));
 
 
 //console.log('Yohann'.localeCompare('Angélique'));

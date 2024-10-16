@@ -35,6 +35,11 @@ function triSelection(list){
     return list;
 }
 
+/////////////////////////////////////////////////////////////////////
+// function triRapide(list){
+
+// }
+
 console.log(list);
 //console.log(triBulle(list));
 console.log(triSelection(list));
