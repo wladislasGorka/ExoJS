@@ -1,5 +1,10 @@
 const list = [1,11,5,21,3,2,144,10];
 
+function echanger(list,a,b){
+    let temp = list[a];
+    list[a] = list[b];
+    list[b] = temp;
+}
 /////////////////////////////////////////////////////////////////////
 function triBulle(list){
     for(let j=0; j<(list.length-1); j++){
@@ -36,7 +41,8 @@ function triSelection(list){
 }
 
 /////////////////////////////////////////////////////////////////////
-function triRapide(list){
+/* fonction de tri rapide en créant plusieurs listes (moins efficace)
+    function triRapide(list){
     let listTemp = [];
 
     if(list.length===0){
@@ -65,9 +71,35 @@ function triRapide(list){
     
     //console.log(list);
     return list;
+} */
+
+/////////////////////////////////////////////////////////////////////
+// fonction de tri rapide fonctionnelle
+function triRapide(list,low=0,hight=list.length-1){
+    //cas de base
+    if(low>hight){
+        return;
+    }
+    //choix du pivot
+    let pivot = list[hight];
+    let i = low;
+
+    for(let j=low; j<hight; j++){
+        if(list[j]<pivot){
+            echanger(list,i,j);
+            i++; 
+        }
+    }
+    //Deplace pivot
+    echanger(list,i,hight);
+    //appelle de la fonction de tri sur les elements de la liste avant le pivot puis ceux apres le pivot
+    triRapide(list,low,i-1);
+    triRapide(list,i+1,hight);
 }
 
 console.log(list);
 //console.log(triBulle(list));
 //console.log(triSelection(list));
-console.log(triRapide(list));
+//console.log(triRapide(list));
+triRapide(list);
+console.log(list);
