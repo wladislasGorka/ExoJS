@@ -16,10 +16,11 @@ console.log(estPalindrome("lamarieeiramal"));
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 function decal(mot){
+    let motUp = mot.toUpperCase();
     let newMot = '';
     for(let i=0; i<mot.length; i++){
         let j = 0;
-        while(mot[i]!=alphabet[j]){            
+        while(motUp[i]!=alphabet[j]){            
             j++;
         }
         //console.log(mot[i]+ " " +alphabet[(j+3)%26]);
@@ -28,7 +29,7 @@ function decal(mot){
     return newMot;
 }
 
-const mot = "BANANE";
+const mot = "Banane";
 console.log(mot);
 console.log(decal(mot));
 
