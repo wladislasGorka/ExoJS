@@ -1,4 +1,4 @@
-// Avec repeat
+//Avec repeat
 // function printEtoiles(n){
 
 //     if(n){
@@ -98,9 +98,11 @@ function printMosaique(n,m){
         let ligne = '';
         for(let j=0; j<m; j++){
             if((i+j)%2){
+                //Modulo = 1
                 ligne += '*';
             }
             else{
+                //Modulo = 0
                 ligne += '#';
             }
         }

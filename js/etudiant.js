@@ -18,18 +18,19 @@ const etudiants = [
 const triEtudiants = [];
 
 function noteSup(note){
-
+    //Récupération des étudiants selon la note
     for(let i=0; i<etudiants.length; i++){
         if(etudiants[i]['note']>note){
             triEtudiants.push(etudiants[i]);
         }
     }
-
     
+    //tri selon le nom
     for(let i=0; i<triEtudiants.length-1; i++){
-        for(let j=0; j<triEtudiants.length-1; j++){
+        for(let j=0; j<triEtudiants.length-1; j++){            
+            //console.log(triEtudiants[j].nom + " " + triEtudiants[j+1].nom);
             //console.log(triEtudiants[j].nom.localeCompare(triEtudiants[j+1].nom));
-            if(triEtudiants[j].nom>triEtudiants[j+1].nom){
+            if((triEtudiants[j].nom.localeCompare(triEtudiants[j+1].nom))===1){
                 let temp = triEtudiants[j];
                 triEtudiants[j] = triEtudiants[j+1];
                 triEtudiants[j+1] = temp;
@@ -37,11 +38,22 @@ function noteSup(note){
         }
     }
 }
+// Sans .localeCompare()
+// triEtudiants[j].nom.toLowerCase()<triEtudiants[j+1].nom.toLowerCase();
 
+function moyenne(listEtudiants){
+    let somme = 0;
+    for( let i=0; i<listEtudiants.length; i++){
+        somme += listEtudiants[i].note;
+    }
+    return (somme / listEtudiants.length).toFixed(2);
+}
 
 noteSup(15);
 console.log(triEtudiants);
+console.log("Moyenne: "+moyenne(triEtudiants));
 
 
-console.log('Yohann'.localeCompare('Angélique'));
+// Normaliser une chaine de charactère (sans maj, sans accent et sans espace)
+// let normalizeStr1 = str1.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g,'').toLowerCase();
 

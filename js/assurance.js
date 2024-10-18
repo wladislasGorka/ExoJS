@@ -192,3 +192,9 @@ form.addEventListener('submit', function (event) {
     
 //console.log(difference + ' days');
 //console.log(Date.now());
+
+
+
+
+//presentation de Sylvain 
+//class de contrat = 4 puis ajout des bonus ou malus
