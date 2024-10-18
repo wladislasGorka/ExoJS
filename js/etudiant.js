@@ -18,13 +18,14 @@ const etudiants = [
 const triEtudiants = [];
 
 function noteSup(note){
-
+    //Récupération des étudiants selon la note
     for(let i=0; i<etudiants.length; i++){
         if(etudiants[i]['note']>note){
             triEtudiants.push(etudiants[i]);
         }
     }
     
+    //tri selon le nom
     for(let i=0; i<triEtudiants.length-1; i++){
         for(let j=0; j<triEtudiants.length-1; j++){            
             //console.log(triEtudiants[j].nom + " " + triEtudiants[j+1].nom);
@@ -37,6 +38,8 @@ function noteSup(note){
         }
     }
 }
+// Sans .localeCompare()
+// triEtudiants[j].nom.toLowerCase()<triEtudiants[j+1].nom.toLowerCase();
 
 function moyenne(listEtudiants){
     let somme = 0;
