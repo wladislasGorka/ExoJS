@@ -8,6 +8,13 @@ function estPalindrome(mot){
     return true;
 }
 
+// presentation Kaique
+// .split() .reverse() .join()
+
+// presentation Sylvain
+// toLowerCase pour les mots avec majuscule
+
+
 console.log(estPalindrome("anna"));
 console.log(estPalindrome("antona"));
 console.log(estPalindrome("lamarieeiramal"));
@@ -28,8 +35,9 @@ function decal(mot){
     }
     return newMot;
 }
+//marche pas si caractère hors de alphabet
 
-const mot = "Banane";
+const mot = "BananeX";
 console.log(mot);
 console.log(decal(mot));
 

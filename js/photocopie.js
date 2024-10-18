@@ -39,6 +39,8 @@ calculPrix(5);
 calculPrix(20);
 calculPrix(31);
 
+// presentation Yannick
+// gestion du cas n<0
 
 //////////////////////////////////////////////////////////////////////////////
 function calcPrixKm(km,nbPassager){

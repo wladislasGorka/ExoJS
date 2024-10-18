@@ -48,8 +48,9 @@ function moyenne(listEtudiants){
 
 noteSup(15);
 console.log(triEtudiants);
-console.log(moyenne(triEtudiants));
+console.log("Moyenne: "+moyenne(triEtudiants));
 
 
-//console.log('Yohann'.localeCompare('Angélique'));
+// Normaliser une chaine de charactère (sans maj, sans accent et sans espace)
+// let normalizeStr1 = str1.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g,'').toLowerCase();
 

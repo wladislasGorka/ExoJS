@@ -4,19 +4,21 @@ function echanger(list,a,b){
     list[b] = temp;
 }
 /////////////////////////////////////////////////////////////////////
-function triBulle(list){
-    for(let j=0; j<(list.length-1); j++){
-        for(let i=(list.length - 1); i>0; i--){
-            if(list[i-1]>list[i]){
-                let temp = list[i];
-                list[i] = list[i-1];
-                list[i-1] = temp;
-            }
-        }
-    }
+// function triBulle(list){
+//     for(let j=0; j<(list.length-1); j++){
+//         for(let i=(list.length - 1); i>0; i--){
+//             if(list[i-1]>list[i]){
+//                 let temp = list[i];
+//                 list[i] = list[i-1];
+//                 list[i-1] = temp;
+//             }
+//         }
+//     }
     
-    return list;
-}
+//     return list;
+// }
+//presentation Agathe
+// do while, si pas d'echange on stop
 
 /////////////////////////////////////////////////////////////////////
 function triSelection(list){
