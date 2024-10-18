@@ -30,11 +30,8 @@ function calculTaux(personne){
         }else{
             taux = personne.age * 0.05;
         }
-        return taux;
-    }else{
-        return taux;
     }
-
+    return taux;
 }
 
 const personne1 = new personne('H',18);
