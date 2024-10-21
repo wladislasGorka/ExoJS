@@ -118,32 +118,6 @@ const tableau = [
     { nom: "valérie", note: 89 }
 ];
 
-// const alphabet = [
-//     { lettre: "A", code: 0},
-//     { lettre: "a", code: 0},
-//     { lettre: "à", code: 0},
-//     { lettre: "B", code: 1},
-//     { lettre: "b", code: 1},
-//     { lettre: "C", code: 2},
-//     { lettre: "c", code: 2},
-//     { lettre: "D", code: 3},
-//     { lettre: "d", code: 3},
-//     { lettre: "E", code: 4},
-//     { lettre: "e", code: 4},
-//     { lettre: "J", code: 5},
-//     { lettre: "j", code: 5},
-//     { lettre: "K", code: 6},
-//     { lettre: "k", code: 6},
-//     { lettre: "L", code: 7},
-//     { lettre: "l", code: 7},
-//     { lettre: "W", code: 8},
-//     { lettre: "w", code: 8},
-//     { lettre: "Y", code: 9},
-//     { lettre: "y", code: 9},
-// ];
-
-const majuscule = "ABCDEÈÉËFGHIJKLMNOPQRSTUVWXYZ";
-const minuscule = "abcdeèéëfghijklmnopqrstuvwxyz";
 
 const triEtudiants = [];
 
@@ -206,13 +180,19 @@ function triEtudiant(etudiants){
 }
 
 
+//////////////////
+// SANS METHODE //
+//////////////////
 
+const majuscule = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const minuscule = "abcdefghijklmnopqrstuvwxyz";
 
 function retri(etudiants,note){
     //Récupération des étudiants selon la note
     for(let i=0; i<etudiants.length; i++){
         if(etudiants[i]['note']>note){
-            triEtudiants.push(etudiants[i]);
+            //triEtudiants.push(etudiants[i]);
+            triEtudiants[triEtudiants.length] = etudiants[i];
         }
     }
     
@@ -226,18 +206,25 @@ function retri(etudiants,note){
             }
         }
     }
-
     return triEtudiants;
 }
 
 // comparaison entre deux noms, return true si nomA est avant nomB
 function estApres(a,b){
-    for(let i=0; i<a.length; i++){
-        if(index(a[i]) === undefined){
-            return true;
-        }
-        if(index(b[i]) === undefined){
+    for(let i=0; i<=a.length; i++){
+        //console.log(index(a[i])+" "+index(b[i]));
+        // comparer avec undefined marche mais est une mauvaise pratique. 
+        // if(index(a[i]) === undefined){
+        //     return false;
+        // }
+        // if(index(b[i]) === undefined){            
+        //     return true;
+        // }
+        if(i === a.length){
             return false;
+        }
+        if(i === b.length){            
+            return true;
         }
         if(index(a[i])>index(b[i])){
             return true;
@@ -245,12 +232,18 @@ function estApres(a,b){
         if(index(a[i])<index(b[i])){
             return false;
         }
-    }
+    }    
     return false;
 }
 
 // Trouve l'index de char dans le tableau majuscule ou minuscule
 function index(char){
+    if(char === "È" || char === "É" || char === "Ë"){
+        char = "E";
+    }
+    if(char === "è" || char === "é" || char === "ë"){
+        char = "e";
+    }
     for(let i=0; i<majuscule.length; i++){
         if(char===majuscule[i] || char===minuscule[i]){
             return i;
@@ -260,8 +253,8 @@ function index(char){
 
 //console.log(triEtudiant(etudiants));
 
-//console.log("emmanuel apres agathe? "+estApres("emmanuel","Agathe"));
-//console.log("emmanuel apres Yohann? "+estApres("emmanuel","Yohann"));
+//console.log("emmanuel apres emma? "+estApres("emmanuel","emma"));
+//console.log("emma apres emmanuel? "+estApres("emma","emmanuel"));
 
 
 console.log(retri(tableau,15));
