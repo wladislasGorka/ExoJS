@@ -1,11 +1,13 @@
+let nbParties = 0;
+let nbPartiesGagnees = 0;
+
 let mot_a_trouver = "";
 let longueur = 0;
 let erreurs_autorisees = 10;
-let erreurs_commises = 0;
-
 
 let lettres_trouvees = "";
 let mot_trouve = "------";
+let erreurs_commises = 0;
 
 function init(){
     //On choisit un mot au hasard
@@ -18,6 +20,7 @@ function init(){
     for( let i=0; i<longueur; i++){
         mot_trouve += "-";
     }
+    console.log("Mot à trouver: "+mot_trouve);
     erreurs_commises = 0;
 
 }
@@ -44,8 +47,13 @@ function pendu(){
     
     if(mot_trouve === mot_a_trouver){
         console.log("Gagné !");
+        nbParties++;
+        nbPartiesGagnees++;
+        return 1;
     }else{
         console.log("Perdu !");
+        nbParties++;
+        return 0;
     }
 }
 
@@ -60,17 +68,41 @@ function estPresente(lettre,mot){
 
 function lettre_placees(mot_complet,lettres_trouvees){
     
+    // les string sont immutable, alors on transforme le string en tableau
     let motArr = mot_trouve.split('');
     for(let i=0; i<lettres_trouvees.length; i++){
         for(let j=0; j<mot_complet.length; j++){       
             if(lettres_trouvees[i] === mot_complet[j]){
-                //console.log(mot[j]+" "+mot_complet[j]);
                 motArr[j] = mot_complet[j];
             }
         }
     }
+    // le tableau est repassé en string
     mot_trouve = motArr.join('');
     return mot_trouve;
 }
 
-pendu();
+function jeu(){
+    let nbParties = 0;
+    let nbPartiesGagnees = 0;
+
+    console.log("Bienvenue dans le jeu du pendu!");
+    pendu();
+
+    let encore = "1";
+    do{
+        encore = window.prompt('Encore? 1:oui 0:non');
+        if(encore === "1"){
+            pendu();
+        }
+    }while(encore === "1")
+
+    console.log("");
+    console.log("Au revoir");
+    console.log("");
+    console.log("Résultat de la session:");
+    console.log("Nombre de parties: "+nbParties);
+    console.log("Nombre de parties gagnées: "+nbPartiesGagnees);
+}
+
+jeu();
