@@ -5,8 +5,9 @@ let mot_a_trouver = "";
 let longueur = 0;
 let erreurs_autorisees = 10;
 
+let lettres_proposees = "";
 let lettres_trouvees = "";
-let mot_trouve = "------";
+let mot_trouve = "";
 let erreurs_commises = 0;
 
 function init(){
@@ -21,6 +22,7 @@ function init(){
     for( let i=0; i<longueur; i++){
         mot_trouve += "-";
     }
+    console.log("");
     console.log("Mot à trouver: "+mot_trouve);
     erreurs_commises = 0;
 
@@ -34,12 +36,18 @@ function pendu(){
         if(lettres_proposees.length){
             console.log("Lettres déjà testées: "+lettres_proposees.split(','));
         }        
-        let lettre = window.prompt("Lettre ?"); //vérifier qu'il n'y a qu'une seule lettre
+        let lettre = window.prompt("Lettre ?");
         
-        if(!estPresente(lettre,lettres_proposees)){
-            lettres_proposees += lettre;
-        }        
-
+        // Controle de validité de la variable lettre
+        while(lettre.length>1){
+            lettre = window.prompt("ATTENTION: Une seule lettre à la fois!");
+        }
+        while(estPresente(lettre,lettres_proposees)){
+            lettre = window.prompt("Lettre déjà proposée, choisis en une autre.");
+        }
+        lettres_proposees += lettre;
+        
+        // Quand lettre est valide, on cherche si elle est présente dans le mot à trouver
         if(estPresente(lettre,mot_a_trouver)){
             //console.log("Lettre est dans le mot");
             lettres_trouvees += lettre;
@@ -55,11 +63,14 @@ function pendu(){
     
     if(mot_trouve === mot_a_trouver){
         console.log("Gagné !");
+        console.log(`Vous aviez droit à ${erreurs_autorisees} erreurs.`);
+        console.log(`Vous avez fait ${erreurs_commises} erreurs.`);
         nbParties++;
         nbPartiesGagnees++;
         return 1;
     }else{
         console.log("Perdu !");
+        console.log(`Vous n'aviez droit qu'à ${erreurs_autorisees} erreurs.`);
         nbParties++;
         return 0;
     }
@@ -88,6 +99,7 @@ function lettre_placees(mot_complet,lettres_trouvees){
     // le tableau est repassé en string
     mot_trouve = motArr.join('');
     return mot_trouve;
+
 }
 
 function jeu(){
@@ -103,12 +115,13 @@ function jeu(){
         }
     }while(encore === "1")
 
-    console.log("");
-    console.log("Au revoir");
+    
     console.log("");
     console.log("Résultat de la session:");
     console.log("Nombre de parties: "+nbParties);
     console.log("Nombre de parties gagnées: "+nbPartiesGagnees);
+    console.log("");
+    console.log("Au revoir");
 }
 
 jeu();
