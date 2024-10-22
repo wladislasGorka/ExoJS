@@ -11,14 +11,29 @@ let mot_trouve = "";
 let erreurs_commises = 0;
 let score = [];
 
-const imagesPendu =["../images/pendu7.png",
-                    "../images/pendu6.png",
-                    "../images/pendu5.png",
-                    "../images/pendu4.png",
-                    "../images/pendu3.png",
-                    "../images/pendu2.png",
-                    "../images/pendu1.png",
-                    "../images/pendu0.png"
+const imagesPendu =[
+    "../images/pendu7.png",
+    "../images/pendu6.png",
+    "../images/pendu5.png",
+    "../images/pendu4.png",
+    "../images/pendu3.png",
+    "../images/pendu2.png",
+    "../images/pendu1.png",
+    "../images/pendu0.png"
+];
+
+const messages =[
+    "Tu es mon idole !!!", // Score 0
+    "Presque parfait, juste une petite erreur.", // Score 1
+    "Deux erreurs, tu t'en sors bien.", // Score 2
+    "Trois erreurs, passable.", // Score 3
+    "Quatre erreurs, ça commence à se voir.", // Score 4
+    "Cinq erreurs, on est à la moitié.", // Score 5
+    "Sept erreurs, attention, ça chauffe.", // Score 6
+    "Huit erreurs, c'est pas fameux.", // Score 7
+    "Neuf erreurs, fais semblant d'essayer au moins.", // Score 8
+    "Dix erreurs, tu me dégoutes !!!", // Score 9
+    "..." // Score 10
 ];
 
 let lettre_proposee = "";
@@ -59,6 +74,8 @@ function init(){
     erreurs_commises = 0;
 
     document.getElementById("inputLettreLabel").innerHTML = "Lettre ?";
+    form.elements["inputLettre"].value = "";
+    form.elements["inputLettre"].focus();
     document.getElementById("imgPendu").src = imagesPendu[0];
 
     document.getElementById("inputLettreLabel").style.display = "inline-block";
@@ -87,7 +104,7 @@ function pendu(){
         console.log("");
         console.log("Gagné !");
         console.log(`Vous aviez droit à ${erreurs_autorisees} erreurs.`);
-        console.log(`Vous avez fait ${erreurs_commises} erreurs.`);
+        console.log(messages[erreurs_commises]);
         nbParties++;
         nbPartiesGagnees++;
         score.push(erreurs_commises);
