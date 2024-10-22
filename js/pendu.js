@@ -9,6 +9,7 @@ let lettres_proposees = "";
 let lettres_trouvees = "";
 let mot_trouve = "";
 let erreurs_commises = 0;
+let score = [];
 
 const imagesPendu =["../images/pendu7.png",
                     "../images/pendu6.png",
@@ -25,6 +26,8 @@ const form = document.getElementById("form");
 form.addEventListener("submit", function(event){
     event.preventDefault();
     lettre_proposee = form.elements["inputLettre"].value;
+    form.elements["inputLettre"].value = "";
+    form.elements["inputLettre"].focus();
 
     if(estPresente(lettre_proposee,lettres_proposees)){
         document.getElementById("inputLettreLabel").innerHTML = "Lettre déjà proposée, choisis en une autre.";
@@ -61,7 +64,7 @@ function init(){
 }
 
 function pendu(){
-    if(mot_trouve != mot_a_trouver && erreurs_commises<erreurs_autorisees){        
+    if(mot_trouve != mot_a_trouver && erreurs_commises<=erreurs_autorisees){        
         
         // Quand lettre est valide, on cherche si elle est présente dans le mot à trouver
         if(estPresente(lettre_proposee,mot_a_trouver)){
@@ -76,17 +79,22 @@ function pendu(){
         console.log(mot_trouve);        
     }    
     if(mot_trouve === mot_a_trouver){
+        console.log("");
         console.log("Gagné !");
         console.log(`Vous aviez droit à ${erreurs_autorisees} erreurs.`);
         console.log(`Vous avez fait ${erreurs_commises} erreurs.`);
         nbParties++;
         nbPartiesGagnees++;
+        score.push(erreurs_commises);
         return 1;
     }
+    
     if(erreurs_commises>erreurs_autorisees){
+        console.log("");
         console.log("Perdu !");
         console.log(`Vous n'aviez droit qu'à ${erreurs_autorisees} erreurs.`);
         nbParties++;
+        score.push(erreurs_commises);
         return 0;
     }
     return -1;
@@ -125,10 +133,17 @@ function jeu(){
 
 function finJeu(){
     console.log("");
-    console.log("Résultat de la session:");
+    console.log("Résumé de la session:");
     console.log("Nombre de parties: "+nbParties);
     console.log("Nombre de parties gagnées: "+nbPartiesGagnees);
+    let sommeScore = 0;
+    for(let i=0; i<score.length; i++){
+        sommeScore += score[i];
+    }
+    console.log("Score moyen: "+(Math.floor(sommeScore/score.length)));
     console.log("");
+    console.log("Nouvelle Partie:");
+    init();
 }
 
 window.onload = function(){
