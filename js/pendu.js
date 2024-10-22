@@ -15,6 +15,7 @@ function init(){
     //Taille du mot choisit
     longueur = mot_a_trouver.length;
 
+    lettres_proposees = "";
     lettres_trouvees = "";
     mot_trouve = "";
     for( let i=0; i<longueur; i++){
@@ -30,8 +31,15 @@ function pendu(){
 
     while(mot_trouve != mot_a_trouver && erreurs_commises<erreurs_autorisees){
         // L'utilisateur choisit une lettre
-        let lettre = window.prompt("Lettre ?");
-    
+        if(lettres_proposees.length){
+            console.log("Lettres déjà testées: "+lettres_proposees.split(','));
+        }        
+        let lettre = window.prompt("Lettre ?"); //vérifier qu'il n'y a qu'une seule lettre
+        
+        if(!estPresente(lettre,lettres_proposees)){
+            lettres_proposees += lettre;
+        }        
+
         if(estPresente(lettre,mot_a_trouver)){
             //console.log("Lettre est dans le mot");
             lettres_trouvees += lettre;
@@ -83,8 +91,6 @@ function lettre_placees(mot_complet,lettres_trouvees){
 }
 
 function jeu(){
-    let nbParties = 0;
-    let nbPartiesGagnees = 0;
 
     console.log("Bienvenue dans le jeu du pendu!");
     pendu();
