@@ -61,6 +61,11 @@ function init(){
     document.getElementById("inputLettreLabel").innerHTML = "Lettre ?";
     document.getElementById("imgPendu").src = imagesPendu[0];
 
+    document.getElementById("inputLettreLabel").style.display = "inline-block";
+    document.getElementById("inputLettre").style.display = "inline-block";
+    document.getElementById("inputLettreSubmit").style.display = "inline-block";
+    document.getElementById("inputRejouer").style.display = "none";
+    document.getElementById("inputStop").style.display = "none";
 }
 
 function pendu(){
@@ -127,7 +132,7 @@ function lettre_placees(mot_complet,lettres_trouvees){
 }
 
 function jeu(){
-    console.log("Bienvenue dans le jeu du pendu!");
+    console.log("Nouvelle Partie:");
     init();
 }
 
@@ -141,12 +146,24 @@ function finJeu(){
         sommeScore += score[i];
     }
     console.log("Score moyen: "+(Math.floor(sommeScore/score.length)));
-    console.log("");
-    console.log("Nouvelle Partie:");
-    init();
-}
 
-window.onload = function(){
+    document.getElementById("inputLettreLabel").style.display = "none";
+    document.getElementById("inputLettre").style.display = "none";
+    document.getElementById("inputLettreSubmit").style.display = "none";
+    document.getElementById("inputRejouer").style.display = "inline-block";
+    document.getElementById("inputStop").style.display = "inline-block";
+}
+function nouvellePartie(){
+    console.log("");
     jeu();
 }
+function stop(){
+    document.getElementById("inputRejouer").style.display = "none";
+    document.getElementById("inputStop").style.display = "none";
+    document.getElementById("imgPendu").src = imagesPendu[imagesPendu.length-1];
+
+}
+
+console.log("Bienvenue dans le jeu du pendu!");
+jeu();
 
