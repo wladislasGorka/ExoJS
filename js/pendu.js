@@ -137,6 +137,7 @@ function jeu(){
 }
 
 function finJeu(){
+    // information de fin de partie
     console.log("");
     console.log("Résumé de la session:");
     console.log("Nombre de parties: "+nbParties);
@@ -147,6 +148,7 @@ function finJeu(){
     }
     console.log("Score moyen: "+(Math.floor(sommeScore/score.length)));
 
+    // gestion affichage des boutons
     document.getElementById("inputLettreLabel").style.display = "none";
     document.getElementById("inputLettre").style.display = "none";
     document.getElementById("inputLettreSubmit").style.display = "none";
@@ -158,10 +160,27 @@ function nouvellePartie(){
     jeu();
 }
 function stop(){
+    let result = minMax(score);
+    console.log("");
+    console.log("Meilleur performance: "+result[0]+" erreurs.");
+    console.log("Pire performance: "+result[1]+" erreurs.");
     document.getElementById("inputRejouer").style.display = "none";
     document.getElementById("inputStop").style.display = "none";
     document.getElementById("imgPendu").src = imagesPendu[imagesPendu.length-1];
 
+}
+function minMax(Array){
+    let min = 100;
+    let max = 0;
+    for(let i=0; i<Array.length; i++){
+        if(Array[i]<min){
+            min = Array[i];
+        }
+        if(Array[i]>max){
+            max = Array[i];
+        }
+    }
+    return [min,max];
 }
 
 console.log("Bienvenue dans le jeu du pendu!");
