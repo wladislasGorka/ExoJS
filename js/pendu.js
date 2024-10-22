@@ -10,6 +10,16 @@ let lettres_trouvees = "";
 let mot_trouve = "";
 let erreurs_commises = 0;
 
+const imagesPendu =["../images/pendu7.png",
+                    "../images/pendu6.png",
+                    "../images/pendu5.png",
+                    "../images/pendu4.png",
+                    "../images/pendu3.png",
+                    "../images/pendu2.png",
+                    "../images/pendu1.png",
+                    "../images/pendu0.png"
+];
+
 function init(){
     //On choisit un mot au hasard
     mot_a_trouver = wordsArray[Math.floor(Math.random() * wordsArray.length)];
@@ -26,18 +36,23 @@ function init(){
     console.log("Mot à trouver: "+mot_trouve);
     erreurs_commises = 0;
 
+    document.getElementById("imgPendu").src = imagesPendu[0];
+
 }
 
 function pendu(){
     init();
 
     while(mot_trouve != mot_a_trouver && erreurs_commises<erreurs_autorisees){
+        document.getElementById("imgPendu").src = imagesPendu[Math.min(erreurs_commises,imagesPendu.length-1)];
+        
         // L'utilisateur choisit une lettre
         if(lettres_proposees.length){
             console.log("Lettres déjà testées: "+lettres_proposees.split(','));
-        }        
+        } 
+
         let lettre = window.prompt("Lettre ?");
-        
+
         // Controle de validité de la variable lettre
         while(lettre.length>1){
             lettre = window.prompt("ATTENTION: Une seule lettre à la fois!");
@@ -59,6 +74,7 @@ function pendu(){
         }
     
         console.log(mot_trouve);
+        
     }
     
     if(mot_trouve === mot_a_trouver){
