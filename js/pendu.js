@@ -20,12 +20,31 @@ const imagesPendu =["../images/pendu7.png",
                     "../images/pendu0.png"
 ];
 
+let lettre_proposee = "";
+const form = document.getElementById("form");
+form.addEventListener("submit", function(event){
+    event.preventDefault();
+    lettre_proposee = form.elements["inputLettre"].value;
+
+    if(estPresente(lettre_proposee,lettres_proposees)){
+        document.getElementById("inputLettreLabel").innerHTML = "Lettre déjà proposée, choisis en une autre.";
+    }else{
+        lettres_proposees += lettre_proposee;
+        document.getElementById("inputLettreLabel").innerHTML = "Lettre ? ("+lettres_proposees+")";
+        let result = pendu();
+        if(result>=0){
+            finJeu();
+        }
+    }
+})
+
 function init(){
     //On choisit un mot au hasard
     mot_a_trouver = wordsArray[Math.floor(Math.random() * wordsArray.length)];
     //Taille du mot choisit
     longueur = mot_a_trouver.length;
 
+    lettre_proposee = "";
     lettres_proposees = "";
     lettres_trouvees = "";
     mot_trouve = "";
@@ -36,47 +55,26 @@ function init(){
     console.log("Mot à trouver: "+mot_trouve);
     erreurs_commises = 0;
 
+    document.getElementById("inputLettreLabel").innerHTML = "Lettre ?";
     document.getElementById("imgPendu").src = imagesPendu[0];
 
 }
 
 function pendu(){
-    init();
-
-    while(mot_trouve != mot_a_trouver && erreurs_commises<erreurs_autorisees){
-        document.getElementById("imgPendu").src = imagesPendu[Math.min(erreurs_commises,imagesPendu.length-1)];
-        
-        // L'utilisateur choisit une lettre
-        if(lettres_proposees.length){
-            console.log("Lettres déjà testées: "+lettres_proposees.split(','));
-        } 
-
-        let lettre = window.prompt("Lettre ?");
-
-        // Controle de validité de la variable lettre
-        while(lettre.length>1){
-            lettre = window.prompt("ATTENTION: Une seule lettre à la fois!");
-        }
-        while(estPresente(lettre,lettres_proposees)){
-            lettre = window.prompt("Lettre déjà proposée, choisis en une autre.");
-        }
-        lettres_proposees += lettre;
+    if(mot_trouve != mot_a_trouver && erreurs_commises<erreurs_autorisees){        
         
         // Quand lettre est valide, on cherche si elle est présente dans le mot à trouver
-        if(estPresente(lettre,mot_a_trouver)){
+        if(estPresente(lettre_proposee,mot_a_trouver)){
             //console.log("Lettre est dans le mot");
-            lettres_trouvees += lettre;
-            mot_trouve = lettre_placees(mot_a_trouver,lettres_trouvees);
-    
+            lettres_trouvees += lettre_proposee;
+            mot_trouve = lettre_placees(mot_a_trouver,lettres_trouvees);    
         }else{
             erreurs_commises++;
             console.log("On trace un trait de plus sur la potence");
-        }
-    
-        console.log(mot_trouve);
-        
-    }
-    
+            document.getElementById("imgPendu").src = imagesPendu[Math.min(erreurs_commises,imagesPendu.length-1)];
+        }    
+        console.log(mot_trouve);        
+    }    
     if(mot_trouve === mot_a_trouver){
         console.log("Gagné !");
         console.log(`Vous aviez droit à ${erreurs_autorisees} erreurs.`);
@@ -84,12 +82,14 @@ function pendu(){
         nbParties++;
         nbPartiesGagnees++;
         return 1;
-    }else{
+    }
+    if(erreurs_commises>erreurs_autorisees){
         console.log("Perdu !");
         console.log(`Vous n'aviez droit qu'à ${erreurs_autorisees} erreurs.`);
         nbParties++;
         return 0;
     }
+    return -1;
 }
 
 function estPresente(lettre,mot){
@@ -119,25 +119,19 @@ function lettre_placees(mot_complet,lettres_trouvees){
 }
 
 function jeu(){
-
     console.log("Bienvenue dans le jeu du pendu!");
-    pendu();
+    init();
+}
 
-    let encore = "1";
-    do{
-        encore = window.prompt('Encore? 1:oui 0:non');
-        if(encore === "1"){
-            pendu();
-        }
-    }while(encore === "1")
-
-    
+function finJeu(){
     console.log("");
     console.log("Résultat de la session:");
     console.log("Nombre de parties: "+nbParties);
     console.log("Nombre de parties gagnées: "+nbPartiesGagnees);
     console.log("");
-    console.log("Au revoir");
 }
 
-jeu();
+window.onload = function(){
+    jeu();
+}
+
